@@ -1,2 +1,2 @@
 # x
-repo to acces github fast
+repo to access github fast

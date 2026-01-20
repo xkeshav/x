@@ -20,4 +20,6 @@ If your project has opinions, design principles, constraints — this is gold he
 
 ## Author
 
-Keshav Mohta
+Keshav Mohta 
+
+@copy; 2026 

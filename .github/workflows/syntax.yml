@@ -1,0 +1,31 @@
+name: Multi Trigger Workflow
+on:
+  create: #  on create of any branch event trigger
+    ref_type: branch
+    
+  push: # event trigger
+    branches:
+      - main
+      - develop
+      - '!test/*' # exclude branches starting with 'test/'
+    paths-ignore:
+      - 'docs/**'
+  
+  pull_request:
+    branches-ignore: ['feature/*']
+
+  issues: # activity trigger
+    types:
+      - opened
+      - labeled
+
+  workflow_dispatch: #allows manual triggering from the Actions tab
+
+jobs:
+  syntax-check:
+    if: false
+    name: Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4

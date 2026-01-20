@@ -1,0 +1,24 @@
+name: learn-github-actions # Workflow Name
+run-name: ${{ github.actor }} is learning GitHub Actions # display on the Actions tab (optional)
+on: # when to run
+  [push] # on push to any branch
+
+jobs: # what to do 
+  check-bats-version: # job id
+    name: Check Bats Version # job name (optional)
+    runs-on: ubuntu-latest # where to run
+    strategy:
+      matrix:
+        node-version: [18, 20] # test on node 18 and 20
+        os: [ubuntu-latest, windows-latest, macos-latest] # test on these OSes
+
+    steps: # steps to execute
+      - name: checkout # step name (optional)
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4 # setup node
+        with: #optional parameters
+          node-version: '18'
+
+      - run: npm install -g bats # install bats
+      - run: bats -v # check bats version

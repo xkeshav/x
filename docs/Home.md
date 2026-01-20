@@ -17,3 +17,7 @@ Keep it human, not marketing fluff.
 ## 🧠 Philosophy
 
 If your project has opinions, design principles, constraints — this is gold here.
+
+## Author
+
+Keshav Mohta

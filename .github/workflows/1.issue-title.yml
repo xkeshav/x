@@ -12,8 +12,8 @@ permissions:
 jobs:
   update-title:
     runs-on: ubuntu-latest
-    if: true # Disable this job
-    env: 
+    if: false # Disable this job
+    env: # must to pass as using gh cli
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Update issue title using GH CLI

@@ -15,12 +15,12 @@ concurrency:
 jobs:
   format_title:
     runs-on: ubuntu-latest
-    if: true # Disable this job
-    environment: qa
+    if: false # Disable this job
+    # environment: qa # set environment if you want to use env specific variables
     steps:
       - uses: actions/checkout@v4
       - name: Format issue title
         uses: ./.github/actions/format-issue-title
         with:
-          # prefix: PRO # change this as per your convention
-          prefix: ${{ vars.PROJECT_PREFIX }}
+          prefix: PRO # change this as per your convention
+          # prefix: ${{ vars.PROJECT_PREFIX }}

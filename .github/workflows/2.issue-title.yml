@@ -25,7 +25,7 @@ jobs:
         NEW_TITLE=$(echo "$OLD_TITLE" | sed "s/000X/$IDENTIFIER/g")
 
         curl -X PATCH \
-          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Authorization: Bearer $GITHUB_TOKEN" \
           -H "Accept: application/vnd.github+json" \
           https://api.github.com/repos/${{ github.repository }}/issues/$ISSUE_NUMBER \
           -d "{\"title\":\"$NEW_TITLE\"}"

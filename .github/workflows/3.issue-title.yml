@@ -12,7 +12,8 @@ jobs:
   format_title:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Format issue title
-        uses: .github/actions/format-issue-title@main
+        uses: ./.github/actions/format-issue-title@main
         with:
           prefix: PRO # change this as per your convention

@@ -8,6 +8,8 @@ on:
 permissions:
   issues: write
 
+environment: qa
+
 concurrency:
   group: issue-${{ github.event.issue.number }}
   cancel-in-progress: true

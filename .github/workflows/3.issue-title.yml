@@ -1,3 +1,5 @@
+name: "3: Auto Format Issue Title"
+run-name: Auto format issue using composite action
 
 on:
   issues:

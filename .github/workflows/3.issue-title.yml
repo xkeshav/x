@@ -3,10 +3,15 @@ run-name: Auto format issue using composite action
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened, edited, labeled]
 
 permissions:
   issues: write
+
+concurrency:
+  group: issue-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
 
 jobs:
   format_title:

@@ -14,12 +14,6 @@ YEAR=$(date +%y)
 PADDED_NUM=$(printf "%04d" "$ISSUE_NUMBER")
 IDENTIFIER="[${PREFIX}-${YEAR}${PADDED_NUM}]: "
 
-# Skip if already present
-# if echo "$OLD_TITLE" | grep -q "$IDENTIFIER"; then
-#   echo "Identifier already present. Skipping."
-#   exit 0
-# fi
-
 # Skip by checking the prefix
 
 if [[ "$OLD_TITLE" =~ \[${PREFIX}-[0-9]{6}\] ]]; then
@@ -27,17 +21,15 @@ if [[ "$OLD_TITLE" =~ \[${PREFIX}-[0-9]{6}\] ]]; then
   exit 0
 fi
 
-# Replace placeholder at start if provided
-if
-  # Insert after emoji if present
-  if [[ "$OLD_TITLE" =~ ^([[:space:]]*[^[:alnum:][:space:]]+[[:space:]]*)(.*) ]]; then
-    EMOJI="${BASH_REMATCH[1]}"
-    REST="${BASH_REMATCH[2]}"
-    NEW_TITLE="${EMOJI} ${IDENTIFIER}${REST}"
-  else
-    NEW_TITLE="${IDENTIFIER}${OLD_TITLE}"
-  fi
+# Insert after emoji if present
+if [[ "$OLD_TITLE" =~ ^([[:space:]]*[^[:alnum:][:space:]]+[[:space:]]*)(.*) ]]; then
+  EMOJI="${BASH_REMATCH[1]}"
+  REST="${BASH_REMATCH[2]}"
+  NEW_TITLE="${EMOJI} ${IDENTIFIER}${REST}"
+else
+  NEW_TITLE="${IDENTIFIER}${OLD_TITLE}"
 fi
+
 
 # Normalize spacing
 NEW_TITLE=$(echo "$NEW_TITLE" | sed 's/  */ /g' | sed 's/^ *//;s/ *$//')

@@ -15,10 +15,11 @@ concurrency:
 jobs:
   format_title:
     runs-on: ubuntu-latest
-    if: false # Disable this job
+    if: true # Disable this job
     steps:
       - uses: actions/checkout@v4
       - name: Format issue title
         uses: ./.github/actions/format-issue-title
         with:
-          prefix: PRO # change this as per your convention
+          # prefix: PRO # change this as per your convention
+          prefix: ${{ vars.PROJECT_PREFIX }}

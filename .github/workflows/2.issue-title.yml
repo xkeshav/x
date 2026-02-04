@@ -1,0 +1,31 @@
+name: "2. Update Issue Title"
+run-name: Update issue title using REST API
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  issues: write
+
+jobs:
+  update-title:
+    runs-on: ubuntu-latest
+    if: false # Disable this job
+    steps:
+    - name: Update issue title
+      run: |
+        ISSUE_NUMBER=${{ github.event.issue.number }}
+        OLD_TITLE="${{ github.event.issue.title }}"
+
+        YEAR=$(date +%y)
+        PADDED_NUM=$(printf "%04d" "$ISSUE_NUMBER")
+        IDENTIFIER="PRO-${YEAR}${PADDED_NUM}"
+
+        NEW_TITLE=$(echo "$OLD_TITLE" | sed "s/000X/$IDENTIFIER/g")
+
+        curl -X PATCH \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github+json" \
+          https://api.github.com/repos/${{ github.repository }}/issues/$ISSUE_NUMBER \
+          -d "{\"title\":\"$NEW_TITLE\"}"

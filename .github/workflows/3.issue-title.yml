@@ -12,7 +12,6 @@ concurrency:
   group: issue-${{ github.event.issue.number }}
   cancel-in-progress: true
 
-
 jobs:
   format_title:
     runs-on: ubuntu-latest

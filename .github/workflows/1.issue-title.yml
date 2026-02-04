@@ -1,4 +1,6 @@
 name: "1. Update Issue Title"
+run-name: Update issue title using GitHub API
+
 
 on:
   issues:
@@ -11,8 +13,10 @@ jobs:
   update-title:
     runs-on: ubuntu-latest
     if: true # Disable this job
+    env: 
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Update issue title
+      - name: Update issue title using GH CLI
         run: |
           ISSUE_NUMBER=${{ github.event.issue.number }}
           PREFIX="PRO"

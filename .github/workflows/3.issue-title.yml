@@ -8,8 +8,6 @@ on:
 permissions:
   issues: write
 
-environment: qa
-
 concurrency:
   group: issue-${{ github.event.issue.number }}
   cancel-in-progress: true
@@ -18,6 +16,7 @@ jobs:
   format_title:
     runs-on: ubuntu-latest
     if: true # Disable this job
+    environment: qa
     steps:
       - uses: actions/checkout@v4
       - name: Format issue title

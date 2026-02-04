@@ -16,6 +16,7 @@ concurrency:
 jobs:
   format_title:
     runs-on: ubuntu-latest
+    if: false # Disable this job
     steps:
       - uses: actions/checkout@v4
       - name: Format issue title

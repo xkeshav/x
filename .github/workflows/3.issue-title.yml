@@ -13,6 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Format issue title
-        uses: ./.github/actions/format-issue-title@main
+        uses: .github/actions/format-issue-title@main
         with:
           prefix: PRO # change this as per your convention

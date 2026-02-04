@@ -1,0 +1,48 @@
+name: "Comment on Issue"
+run-name: Comment under an issue with conditional job events
+
+on:
+  issues:
+    types: [opened]
+
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "Issue number"
+        required: true
+        type: number
+      comment_body:
+        description: "Comment text"
+        required: true
+        type: string
+
+permissions:
+  issues: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post comments manually
+        uses: actions/github-script@v8
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        with:
+          script: |
+            const issue_number = parseInt(context.payload.inputs.issue_number, 10);
+            const body = context.payload.inputs.comment_body;
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number,
+              body
+            });
+
+      - name: Post comment automatically
+        if: ${{ github.event_name == 'issues' }}
+        run: |
+          issue_number=${{ github.event.issue.number }}
+          body="👋 Thank you for opening this issue! We will look into it as soon as possible."
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/$issue_number/comments \
+            -d "{\"body\":\"$body\"}"

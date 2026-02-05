@@ -15,7 +15,7 @@ concurrency:
 jobs:
   format_title:
     runs-on: ubuntu-latest
-    if: true # Disable this job
+    if: false # Disable this job
     # environment: qa # set environment if you want to use env specific variables
     steps:
       - uses: actions/checkout@v4

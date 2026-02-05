@@ -1,0 +1,17 @@
+name: Greeting from Keshav
+run-name: Greeting Workflow
+
+on: workflow_dispatch
+
+jobs:
+  my-job:
+    name: My Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print a greeting
+        env:
+          MY_VAR: Hi there! My name is
+          FIRST_NAME: Keshav
+          LAST_NAME: Mohta
+        run: |
+          echo $MY_VAR $FIRST_NAME $LAST_NAME.

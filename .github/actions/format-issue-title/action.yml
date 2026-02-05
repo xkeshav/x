@@ -6,7 +6,6 @@ inputs:
   prefix:
     description: "Prefix for the identifier (e.g., TZF)"
     required: true
-    type: string
 
 runs:
   using: "composite"

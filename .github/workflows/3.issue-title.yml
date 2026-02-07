@@ -22,5 +22,5 @@ jobs:
       - name: Format issue title
         uses: ./.github/actions/format-issue-title
         with:
-          prefix: PRO # change this as per your convention
-          # prefix: ${{ vars.PROJECT_PREFIX }}
+          # prefix: PRO # change this as per your convention
+          prefix: ${{ vars.PROJECT_PREFIX }}
